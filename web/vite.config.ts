@@ -1,5 +1,6 @@
 import { defineConfig, searchForWorkspaceRoot, type PluginOption } from "vite";
 import { sveltekit } from "@sveltejs/kit/vite";
+import mkcert from 'vite-plugin-mkcert';
 import basicSSL from "@vitejs/plugin-basic-ssl";
 import { glob } from "glob";
 import mime from "mime";
@@ -63,6 +64,7 @@ const enableCOEP: PluginOption = {
 export default defineConfig({
     plugins: [
         basicSSL(),
+        mkcert(),
         sveltekit(),
         enableCOEP,
         exposeLibAV

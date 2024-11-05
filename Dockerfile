@@ -10,8 +10,8 @@ RUN corepack enable
 RUN apt-get update && \
     apt-get install -y python3 build-essential
 
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    pnpm install --prod --frozen-lockfile
+#RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+RUN pnpm install --prod --frozen-lockfile
 
 RUN pnpm deploy --filter=@imput/cobalt-api --prod /prod/api
 
@@ -21,5 +21,5 @@ WORKDIR /app
 COPY --from=build /prod/api /app
 COPY --from=build /app/.git /app/.git
 
-EXPOSE 9000
+EXPOSE 8080
 CMD [ "node", "src/cobalt" ]

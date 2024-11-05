@@ -1,5 +1,5 @@
 {
-    "name": "@stephanemoni/version-info",
+    "name": "@imput/version-info",
     "version": "1.0.0",
     "description": "helper package for cobalt that provides commit info & version from package file.",
     "main": "index.js",
@@ -7,12 +7,12 @@
     "type": "module",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/stephanemoni/cobalt.git"
+        "url": "git+https://github.com/imputnet/cobalt.git"
     },
-    "author": "stephanemoni",
+    "author": "imput",
     "license": "AGPL-3.0",
     "bugs": {
-        "url": "https://github.com/stephanemoni/cobalt/issues"
+        "url": "https://github.com/imputnet/cobalt/issues"
     },
-    "homepage": "https://github.com/stephanemoni/cobalt#readme"
+    "homepage": "https://github.com/imputnet/cobalt#readme"
 }

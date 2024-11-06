@@ -16,6 +16,7 @@ RUN pnpm install --prod --frozen-lockfile
 RUN pnpm deploy --filter=@imput/cobalt-api --prod /prod/api
 
 FROM base AS api
+
 WORKDIR /app
 
 COPY --from=build /prod/api /app

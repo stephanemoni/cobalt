@@ -9,10 +9,10 @@ node_modules
 build
 
 # secrets
-.env
+#.env
 .env.*
 !.env.example
-cookies.json
+#cookies.json
 
 # docker
 docker-compose.yml

@@ -99,6 +99,17 @@ const merge = (streamInfo, res) => {
             '-map', '1:a',
         ]
 
+        if (streamInfo.startTime) {
+            args.push('-ss', streamInfo.startTime)
+        }
+        
+        if (streamInfo.endTime) {
+            args.push('-to', streamInfo.endTime)
+        }
+
+        console.log('streamInfo',streamInfo);
+        console.log('ffmpegArgs',args);
+
         args = args.concat(ffmpegArgs[format]);
 
         if (hlsExceptions.includes(streamInfo.service)) {

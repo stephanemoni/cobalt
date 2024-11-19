@@ -103,6 +103,8 @@ export default async function({ host, patternMatch, params }) {
                     isAudioOnly,
                     isAudioMuted,
                     dubLang: params.youtubeDubLang,
+                    startTime: params.startTime,
+                    endTime: params.endTime,
                     dispatcher
                 }
 
@@ -114,6 +116,7 @@ export default async function({ host, patternMatch, params }) {
                 }
 
                 r = await youtube(fetchInfo);
+                
                 break;
 
             case "reddit":

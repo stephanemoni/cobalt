@@ -289,6 +289,8 @@ export default async function(o) {
                 video.url,
                 audio.url
             ],
+            startTime : o.startTime,
+            endTime : o.endTime,
             filenameAttributes,
             fileMetadata
         }

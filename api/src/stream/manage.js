@@ -46,6 +46,8 @@ export function createStream(obj) {
             audioBitrate: obj.audioBitrate,
             audioCopy: !!obj.audioCopy,
             audioFormat: obj.audioFormat,
+            startTime: obj.startTime,
+            endTime: obj.endTime,
         };
 
     streamCache.set(

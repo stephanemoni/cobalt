@@ -37,6 +37,12 @@ export const apiSchema = z.object({
                      .transform(verifyLanguageCode)
                      .optional(),
 
+    startTime: z.string()
+                .optional(),
+
+    endTime: z.string()
+                .optional(),
+
     alwaysProxy: z.boolean().default(false),
     disableMetadata: z.boolean().default(false),
     tiktokFullAudio: z.boolean().default(false),

@@ -107,9 +107,6 @@ const merge = (streamInfo, res) => {
             args.push('-to', streamInfo.endTime)
         }
 
-        console.log('streamInfo',streamInfo);
-        console.log('ffmpegArgs',args);
-
         args = args.concat(ffmpegArgs[format]);
 
         if (hlsExceptions.includes(streamInfo.service)) {
@@ -166,6 +163,14 @@ const remux = (streamInfo, res) => {
             '-i', streamInfo.urls,
             '-c:v', 'copy',
         )
+
+        if (streamInfo.startTime) {
+            args.push('-ss', streamInfo.startTime)
+        }
+        
+        if (streamInfo.endTime) {
+            args.push('-to', streamInfo.endTime)
+        }
 
         if (streamInfo.type === "mute") {
             args.push('-an');
@@ -242,6 +247,14 @@ const convertAudio = (streamInfo, res) => {
 
         if (streamInfo.audioFormat === "opus") {
             args.push("-vbr", "off")
+        }
+
+        if (streamInfo.startTime) {
+            args.push('-ss', streamInfo.startTime)
+        }
+        
+        if (streamInfo.endTime) {
+            args.push('-to', streamInfo.endTime)
         }
 
         if (ffmpegArgs[streamInfo.audioFormat]) {

@@ -256,6 +256,8 @@ export default async function(o) {
         type: "audio",
         isAudioOnly: true,
         urls: audio.url,
+        startTime : o.startTime,
+        endTime : o.endTime,
         filenameAttributes,
         fileMetadata,
         bestAudio: format === "h264" ? "m4a" : "opus",

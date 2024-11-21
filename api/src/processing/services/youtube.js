@@ -293,6 +293,7 @@ export default async function(o) {
             ],
             startTime : o.startTime,
             endTime : o.endTime,
+            watermark : o.watermark,
             filenameAttributes,
             fileMetadata
         }

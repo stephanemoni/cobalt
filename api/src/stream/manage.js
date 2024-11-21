@@ -48,6 +48,7 @@ export function createStream(obj) {
             audioFormat: obj.audioFormat,
             startTime: obj.startTime,
             endTime: obj.endTime,
+            watermark: obj.watermark,
         };
 
     streamCache.set(

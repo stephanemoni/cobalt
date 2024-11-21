@@ -105,6 +105,7 @@ export default async function({ host, patternMatch, params }) {
                     dubLang: params.youtubeDubLang,
                     startTime: params.startTime,
                     endTime: params.endTime,
+                    watermark: params.watermark,
                     dispatcher
                 }
 

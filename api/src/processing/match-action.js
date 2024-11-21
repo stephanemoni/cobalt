@@ -17,6 +17,7 @@ export default function({ r, host, audioFormat, isAudioOnly, isAudioMuted, disab
             fileMetadata: !disableMetadata ? r.fileMetadata : false,
             startTime: r.startTime,
             endTime: r.endTime,
+            watermark: r.watermark,
             requestIP
         },
         params = {};

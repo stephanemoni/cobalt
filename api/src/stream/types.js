@@ -90,24 +90,42 @@ const merge = (streamInfo, res) => {
         const format = streamInfo.filename.split('.')[streamInfo.filename.split('.').length - 1];
 
         let args = [
-            '-loglevel', '-8',
+            //'-loglevel', '-8',
+            '-loglevel', 'verbose',
             '-headers', rawHeaders,
             '-i', streamInfo.urls[0],
             '-headers', rawHeaders,
             '-i', streamInfo.urls[1],
-            '-map', '0:v',
-            '-map', '1:a',
+            //'-map', '0:v',
+            //'-map', '1:a',
         ]
 
-        if (streamInfo.startTime) {
+        if (streamInfo.watermark) {
+            console.log('watermark', streamInfo.watermark);
+            args.push('-i', 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=360,fit=crop,q=95/YBgrVvwv5vIz74nq/cloud-api-hub-full-logo-white-d95KlaRQNjUEJNld.png')
+            args.push('-filter_complex', '[0][2]overlay=10:10:format=yuv444[v]')
+            args.push('-map', '[v]')
+            args.push('-map', '1:a')
+            const ffmpegNewArgs = ffmpegArgs[format].splice(2,ffmpegArgs[format].length-2);
+            args = args.concat(ffmpegNewArgs);
+            
+        }
+        else {
+            args.push('-map', '0:v')
+            args.push('-map', '1:a')
+            args = args.concat(ffmpegArgs[format]);
+        }
+
+        
+        // args.push("-c:a", "copy", "-movflags", "faststart+frag_keyframe+empty_moov");
+
+         if (streamInfo.startTime) {
             args.push('-ss', streamInfo.startTime)
         }
         
         if (streamInfo.endTime) {
             args.push('-to', streamInfo.endTime)
         }
-
-        args = args.concat(ffmpegArgs[format]);
 
         if (hlsExceptions.includes(streamInfo.service)) {
             args.push('-bsf:a', 'aac_adtstoasc')
@@ -136,6 +154,7 @@ const merge = (streamInfo, res) => {
 
         process.on('close', shutdown);
         res.on('finish', shutdown);
+
     } catch {
         shutdown();
     }

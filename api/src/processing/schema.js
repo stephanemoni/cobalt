@@ -43,6 +43,13 @@ export const apiSchema = z.object({
     endTime: z.string()
                 .optional(),
 
+    watermark: z.object({
+        url : z.string().min(1),
+        position : z.string().optional(),
+        scale : z.number().optional(),
+        opacity : z.number().optional(),
+    }).optional(),
+
     alwaysProxy: z.boolean().default(false),
     disableMetadata: z.boolean().default(false),
     tiktokFullAudio: z.boolean().default(false),

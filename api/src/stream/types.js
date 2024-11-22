@@ -101,9 +101,34 @@ const merge = (streamInfo, res) => {
         ]
 
         if (streamInfo.watermark) {
-            console.log('watermark', streamInfo.watermark);
-            args.push('-i', 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=360,fit=crop,q=95/YBgrVvwv5vIz74nq/cloud-api-hub-full-logo-white-d95KlaRQNjUEJNld.png')
-            args.push('-filter_complex', '[0][2]overlay=10:10:format=yuv444[v]')
+            let watermarkPosition;
+            let watermarkScale;
+            switch (streamInfo.watermark.position) {
+                default:
+                case "topLeft":
+                    watermarkPosition = "10:10";
+                    break;
+
+                case "topRight":
+                    watermarkPosition = "(main_w-overlay_w)-10:10";
+                    break;
+        
+                case "center":
+                    watermarkPosition = "(main_w-overlay_w)/2:(main_h-overlay_h)/2";
+                    break;
+                
+                case "bottomLeft":
+                    watermarkPosition = "10:(main_h-overlay_h)-10";
+                    break;
+                case "bottomRight":
+                    watermarkPosition = "(main_w-overlay_w)-10:(main_h-overlay_h)-10";
+                    break;
+            }
+            watermarkScale = Object.hasOwn(streamInfo.watermark, 'scale') ? Math.round(streamInfo.watermark.scale, 1) : 1.0;
+            console.log('watermarkScale',watermarkScale);
+            args.push('-i', streamInfo.watermark.url)
+            args.push('-filter_complex', `[0][2]overlay=${watermarkPosition}:format=yuv444[v]`)
+            //args.push('-filter_complex', `[2]scale2ref=oh*mdar:ih*${watermarkScale}[logo];[0][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
             args.push('-map', '[v]')
             args.push('-map', '1:a')
             const ffmpegNewArgs = ffmpegArgs[format].splice(2,ffmpegArgs[format].length-2);
@@ -115,9 +140,6 @@ const merge = (streamInfo, res) => {
             args.push('-map', '1:a')
             args = args.concat(ffmpegArgs[format]);
         }
-
-        
-        // args.push("-c:a", "copy", "-movflags", "faststart+frag_keyframe+empty_moov");
 
          if (streamInfo.startTime) {
             args.push('-ss', streamInfo.startTime)

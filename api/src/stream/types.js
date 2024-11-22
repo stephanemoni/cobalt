@@ -90,8 +90,8 @@ const merge = (streamInfo, res) => {
         const format = streamInfo.filename.split('.')[streamInfo.filename.split('.').length - 1];
 
         let args = [
-            //'-loglevel', '-8',
-            '-loglevel', 'verbose',
+            '-loglevel', '-8',
+            // '-loglevel', 'verbose',
             '-headers', rawHeaders,
             '-i', streamInfo.urls[0],
             '-headers', rawHeaders,
@@ -138,7 +138,9 @@ const merge = (streamInfo, res) => {
             //args.push('-filter_complex', `[0][2]overlay=${watermarkPosition}:format=yuv444[v]`)
             // args.push('-filter_complex', `[2]scale=iw*${watermarkScale}:-1[logo];[0][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
             // args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[logo][video];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
-            args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[watermark][video];[watermark]colorchannelmixer=aa=${watermarkOpacity}[logo];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            // args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[watermark][video];[watermark]colorchannelmixer=aa=${watermarkOpacity}[logo];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            // args.push('-filter_complex', `[2][0]scale2ref=w=oh/mdar:h=ih*${watermarkScale}[watermark][video];[watermark]colorchannelmixer=aa=${watermarkOpacity}[logo];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            args.push('-filter_complex', `[2][0]scale2ref=w='if(gte(iw\,ih)\,iw*${watermarkScale}\,oh/mdar)':h='if(gte(iw\,ih)\,ow/mdar\,ih*${watermarkScale})'[watermark][video];[watermark]colorchannelmixer=aa=${watermarkOpacity}[logo];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
             args.push('-map', '[v]')
             args.push('-map', '1:a')
             args.push('-movflags', 'frag_keyframe+empty_moov')

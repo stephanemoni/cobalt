@@ -103,6 +103,7 @@ const merge = (streamInfo, res) => {
         if (streamInfo.watermark) {
             let watermarkPosition;
             let watermarkScale;
+            let watermarkOpacity;
             switch (streamInfo.watermark.position) {
                 default:
                 case "topLeft":
@@ -125,15 +126,18 @@ const merge = (streamInfo, res) => {
                     break;
             }
             watermarkScale = (streamInfo.watermark.scale) ? streamInfo.watermark.scale : 1.0;
+            watermarkOpacity = (streamInfo.watermark.opacity) ? streamInfo.watermark.opacity : 1.0;
 
             console.log('watermark',streamInfo.watermark);
             console.log('watermarkScale',watermarkScale);
             console.log('watermarkPosition',watermarkPosition);
+            console.log('watermarkOpacity',watermarkOpacity);
 
             args.push('-i', streamInfo.watermark.url)
             //args.push('-filter_complex', `[0][2]overlay=${watermarkPosition}:format=yuv444[v]`)
             // args.push('-filter_complex', `[2]scale=iw*${watermarkScale}:-1[logo];[0][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
-            args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[logo][video];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            // args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[logo][video];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[watermark][video];[watermark]colorchannelmixer=aa=${watermarkOpacity}[logo];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
             args.push('-map', '[v]')
             args.push('-map', '1:a')
             args.push('-movflags', 'frag_keyframe+empty_moov')
@@ -146,6 +150,8 @@ const merge = (streamInfo, res) => {
         else {
             args.push('-map', '0:v')
             args.push('-map', '1:a')
+            args.push('-movflags', 'frag_keyframe+empty_moov')
+            args.push('-f', 'ismv')
             args = args.concat(ffmpegArgs[format]);
         }
 

@@ -233,7 +233,6 @@ export const runAPI = (express, app, __dirname) => {
 
         const { success, data: normalizedRequest } = await normalizeRequest(request);
         if (!success) {
-            console.log('oops');
             return fail(res, "error.api.invalid_body");
         }
 

@@ -128,12 +128,13 @@ const merge = (streamInfo, res) => {
             watermarkScale = (streamInfo.watermark.scale) ? streamInfo.watermark.scale : 1.0;
             watermarkOpacity = (streamInfo.watermark.opacity) ? streamInfo.watermark.opacity : 1.0;
 
-            console.log('watermark',streamInfo.watermark);
-            console.log('watermarkScale',watermarkScale);
-            console.log('watermarkPosition',watermarkPosition);
-            console.log('watermarkOpacity',watermarkOpacity);
+            // console.log('watermark',streamInfo.watermark);
+            // console.log('watermarkScale',watermarkScale);
+            // console.log('watermarkPosition',watermarkPosition);
+            // console.log('watermarkOpacity',watermarkOpacity);
 
             args.push('-i', streamInfo.watermark.url)
+            
             //args.push('-filter_complex', `[0][2]overlay=${watermarkPosition}:format=yuv444[v]`)
             // args.push('-filter_complex', `[2]scale=iw*${watermarkScale}:-1[logo];[0][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
             // args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[logo][video];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)

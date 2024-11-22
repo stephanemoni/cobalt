@@ -124,13 +124,21 @@ const merge = (streamInfo, res) => {
                     watermarkPosition = "(main_w-overlay_w)-10:(main_h-overlay_h)-10";
                     break;
             }
-            watermarkScale = Object.hasOwn(streamInfo.watermark, 'scale') ? Math.round(streamInfo.watermark.scale, 1) : 1.0;
+            watermarkScale = (streamInfo.watermark.scale) ? streamInfo.watermark.scale : 1.0;
+
+            console.log('watermark',streamInfo.watermark);
             console.log('watermarkScale',watermarkScale);
+            console.log('watermarkPosition',watermarkPosition);
+
             args.push('-i', streamInfo.watermark.url)
-            args.push('-filter_complex', `[0][2]overlay=${watermarkPosition}:format=yuv444[v]`)
-            //args.push('-filter_complex', `[2]scale2ref=oh*mdar:ih*${watermarkScale}[logo];[0][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            //args.push('-filter_complex', `[0][2]overlay=${watermarkPosition}:format=yuv444[v]`)
+            // args.push('-filter_complex', `[2]scale=iw*${watermarkScale}:-1[logo];[0][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
+            args.push('-filter_complex', `[2][0]scale2ref=w=iw*${watermarkScale}:h=ow/mdar[logo][video];[video][logo]overlay=${watermarkPosition}:format=yuv444[v]`)
             args.push('-map', '[v]')
             args.push('-map', '1:a')
+            args.push('-movflags', 'frag_keyframe+empty_moov')
+            args.push('-f', 'ismv')
+            
             const ffmpegNewArgs = ffmpegArgs[format].splice(2,ffmpegArgs[format].length-2);
             args = args.concat(ffmpegNewArgs);
             

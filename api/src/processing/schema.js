@@ -46,8 +46,8 @@ export const apiSchema = z.object({
     watermark: z.object({
         url : z.string().min(1),
         position : z.string().optional(),
-        scale : z.number().optional(),
-        opacity : z.number().optional(),
+        scale : z.coerce.number().optional(),
+        opacity : z.coerce.number().optional(),
     }).optional(),
 
     alwaysProxy: z.boolean().default(false),

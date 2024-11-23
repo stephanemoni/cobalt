@@ -104,27 +104,35 @@ const merge = (streamInfo, res) => {
             let watermarkPosition;
             let watermarkScale;
             let watermarkOpacity;
-            switch (streamInfo.watermark.position) {
-                default:
-                case "topLeft":
-                    watermarkPosition = "10:10";
-                    break;
+            if (!/^(\d{1,4}:\d{1,4})$/.test(streamInfo.watermark.position)) {
+                // console.log(streamInfo.watermark.position + " does not match d{1,4}:d{1,4}");
+                switch (streamInfo.watermark.position) {
+                    default:
+                    case "center":
+                        watermarkPosition = "(main_w-overlay_w)/2:(main_h-overlay_h)/2";
+                        break;
 
-                case "topRight":
-                    watermarkPosition = "(main_w-overlay_w)-10:10";
-                    break;
-        
-                case "center":
-                    watermarkPosition = "(main_w-overlay_w)/2:(main_h-overlay_h)/2";
-                    break;
-                
-                case "bottomLeft":
-                    watermarkPosition = "10:(main_h-overlay_h)-10";
-                    break;
-                case "bottomRight":
-                    watermarkPosition = "(main_w-overlay_w)-10:(main_h-overlay_h)-10";
-                    break;
+                    case "topLeft":
+                        watermarkPosition = "10:10";
+                        break;
+    
+                    case "topRight":
+                        watermarkPosition = "(main_w-overlay_w)-10:10";
+                        break;
+                                
+                    case "bottomLeft":
+                        watermarkPosition = "10:(main_h-overlay_h)-10";
+                        break;
+                    case "bottomRight":
+                        watermarkPosition = "(main_w-overlay_w)-10:(main_h-overlay_h)-10";
+                        break;
+                }
             }
+            else {
+                // console.log(streamInfo.watermark.position + " matches d{1,4}:d{1,4}");
+                watermarkPosition = streamInfo.watermark.position;
+            }
+            
             watermarkScale = (streamInfo.watermark.scale) ? streamInfo.watermark.scale : 1.0;
             watermarkOpacity = (streamInfo.watermark.opacity) ? streamInfo.watermark.opacity : 1.0;
 

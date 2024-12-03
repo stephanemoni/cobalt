@@ -50,9 +50,11 @@ const transformSessionData = (cookie) => {
 
 const cloneInnertube = async (customFetch) => {
     const shouldRefreshPlayer = lastRefreshedAt + PLAYER_REFRESH_PERIOD < new Date();
+    const pageIdToken = env.youtubeUserId;
     if (!innertube || shouldRefreshPlayer) {
         innertube = await Innertube.create({
-            fetch: customFetch
+            fetch: customFetch,
+            on_behalf_of_user: pageIdToken
         });
         lastRefreshedAt = +new Date();
     }
@@ -67,8 +69,9 @@ const cloneInnertube = async (customFetch) => {
         customFetch ?? innertube.session.http.fetch,
         innertube.session.cache
     );
-
+    
     const cookie = getCookie('youtube_oauth');
+
     const oauthData = transformSessionData(cookie);
 
     if (!session.logged_in && oauthData) {
@@ -93,7 +96,6 @@ const cloneInnertube = async (customFetch) => {
             });
         }
     }
-
     const yt = new Innertube(session);
     return yt;
 }
@@ -117,13 +119,15 @@ export default async function(o) {
 
     let info;
     try {
-        info = await yt.getBasicInfo(o.id, yt.session.logged_in ? 'ANDROID' : 'IOS');
+        info = await yt.getBasicInfo(o.id, 'ANDROID');
     } catch(e) {
         if (e?.info?.reason === "This video is private") {
             return { error: "content.video.private" };
         } else if (e?.message === "This video is unavailable") {
             return { error: "content.video.unavailable" };
         } else {
+           
+            console.log(e);
             return { error: "fetch.fail" };
         }
     }

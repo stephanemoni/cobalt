@@ -59,8 +59,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       youtubei.js:
-        specifier: ^10.5.0
-        version: 10.5.0
+        specifier: ^11.0.1
+        version: 11.0.1
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -863,11 +863,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  acorn@8.14.0:
-    resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -1602,8 +1597,8 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
-  jintr@2.1.1:
-    resolution: {integrity: sha512-89cwX4ouogeDGOBsEVsVYsnWWvWjchmwXBB4kiBhmjOKw19FiOKhNhMhpxhTlK2ctl7DS+d/ethfmuBpzoNNgA==}
+  jintr@3.0.2:
+    resolution: {integrity: sha512-5g2EBudeJFOopjAX4exAv5OCCW1DgUISfoioCsm1h9Q9HJ41LmnZ6J52PCsqBlQihsmp0VDuxreAVzM7yk5nFA==}
 
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -2249,9 +2244,6 @@ packages:
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
-  tslib@2.8.1:
-    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
-
   tsup@8.3.0:
     resolution: {integrity: sha512-ALscEeyS03IomcuNdFdc0YWGVIkwH1Ws7nfTbAPuoILvEV2hpGQAY72LIOjglGo4ShWpZfpBqP/jpQVCzqYQag==}
     engines: {node: '>=18'}
@@ -2416,8 +2408,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  youtubei.js@10.5.0:
-    resolution: {integrity: sha512-iyA+VF28c15tCCKH9ExM2RKC3zYiHzA/eixGlJ3vERANkuI+xYKzAZ4vtOhmyqwrAddu88R/DkzEsmpph5NWjg==}
+  youtubei.js@11.0.1:
+    resolution: {integrity: sha512-ZsbOd+5XF2Ofi3FrLMfYd+f9g9H8xswlouFhjhOqbwT68dMJtX6CRGsHNj5VTFCR/+L/865x1lnUlllB2dDDTA==}
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -2969,8 +2961,6 @@ snapshots:
       acorn: 8.12.1
 
   acorn@8.12.1: {}
-
-  acorn@8.14.0: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -3743,9 +3733,9 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jintr@2.1.1:
+  jintr@3.0.2:
     dependencies:
-      acorn: 8.14.0
+      acorn: 8.12.1
 
   joycon@3.1.1: {}
 
@@ -4307,8 +4297,6 @@ snapshots:
 
   tslib@2.6.3: {}
 
-  tslib@2.8.1: {}
-
   tsup@8.3.0(postcss@8.4.47)(typescript@5.5.4):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.0)
@@ -4448,11 +4436,11 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  youtubei.js@10.5.0:
+  youtubei.js@11.0.1:
     dependencies:
       '@bufbuild/protobuf': 2.2.2
-      jintr: 2.1.1
-      tslib: 2.8.1
+      jintr: 3.0.2
+      tslib: 2.6.3
       undici: 5.28.4
 
   zod@3.23.8: {}

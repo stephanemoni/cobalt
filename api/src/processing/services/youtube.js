@@ -55,7 +55,7 @@ const cloneInnertube = async (customFetch) => {
     if (!innertube || shouldRefreshPlayer) {
         innertube = await Innertube.create({
             // fetch: customFetch,
-            cookies
+            cookie: cookies
             //on_behalf_of_user: pageIdToken
         });
         lastRefreshedAt = +new Date();

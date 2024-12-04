@@ -27,7 +27,7 @@
         "@imput/version-info": "workspace:^",
         "content-disposition-header": "0.6.0",
         "cors": "^2.8.5",
-        "dotenv": "^16.4.5",
+        "dotenv": "^16.4.7",
         "esbuild": "^0.14.54",
         "express": "^4.21.1",
         "express-rate-limit": "^6.11.2",
@@ -40,7 +40,7 @@
         "set-cookie-parser": "2.6.0",
         "undici": "^5.28.4",
         "url-pattern": "1.0.3",
-        "youtubei.js": "github:stephanemoni/YouTube.js",
+        "youtubei.js": "^11.0.1",
         "zod": "^3.23.8"
     },
     "optionalDependencies": {

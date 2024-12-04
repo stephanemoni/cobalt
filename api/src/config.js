@@ -51,6 +51,7 @@ const env = {
     enabledServices,
 
     youtubeUserId: process.env.YOUTUBE_USER_ID,
+    youtubeCookie: process.env.YOUTUBE_COOKIE,
 }
 
 const genericUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";

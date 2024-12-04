@@ -51,10 +51,12 @@ const transformSessionData = (cookie) => {
 const cloneInnertube = async (customFetch) => {
     const shouldRefreshPlayer = lastRefreshedAt + PLAYER_REFRESH_PERIOD < new Date();
     const pageIdToken = env.youtubeUserId;
+    const cookies = env.youtubeCookie;
     if (!innertube || shouldRefreshPlayer) {
         innertube = await Innertube.create({
-            fetch: customFetch,
-            on_behalf_of_user: pageIdToken
+            // fetch: customFetch,
+            cookies
+            //on_behalf_of_user: pageIdToken
         });
         lastRefreshedAt = +new Date();
     }

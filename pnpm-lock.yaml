@@ -59,8 +59,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       youtubei.js:
-        specifier: ^11.0.1
-        version: 11.0.1
+        specifier: github:stephanemoni/YouTube.js
+        version: https://codeload.github.com/stephanemoni/YouTube.js/tar.gz/ec85b0f9421156c674c5c4d4a3a2e39eca7dbfbf
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -2408,8 +2408,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  youtubei.js@11.0.1:
-    resolution: {integrity: sha512-ZsbOd+5XF2Ofi3FrLMfYd+f9g9H8xswlouFhjhOqbwT68dMJtX6CRGsHNj5VTFCR/+L/865x1lnUlllB2dDDTA==}
+  youtubei.js@https://codeload.github.com/stephanemoni/YouTube.js/tar.gz/ec85b0f9421156c674c5c4d4a3a2e39eca7dbfbf:
+    resolution: {tarball: https://codeload.github.com/stephanemoni/YouTube.js/tar.gz/ec85b0f9421156c674c5c4d4a3a2e39eca7dbfbf}
+    version: 11.0.1
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -4436,7 +4437,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  youtubei.js@11.0.1:
+  youtubei.js@https://codeload.github.com/stephanemoni/YouTube.js/tar.gz/ec85b0f9421156c674c5c4d4a3a2e39eca7dbfbf:
     dependencies:
       '@bufbuild/protobuf': 2.2.2
       jintr: 3.0.2
